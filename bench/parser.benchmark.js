@@ -36,7 +36,12 @@ const binaryFrame3 = createBinaryFrame(200 * 1024);
 const binaryFrame4 = createBinaryFrame(1024 * 1024);
 
 const suite = new benchmark.Suite();
-const receiver = new Receiver('nodebuffer', {}, true);
+const receiver = new Receiver({
+  binaryType: 'nodebuffer',
+  extensions: {},
+  isServer: true,
+  skipUTF8Validation: false
+});
 
 suite.add('ping frame (5 bytes payload)', {
   defer: true,
