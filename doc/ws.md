@@ -88,10 +88,10 @@ This class represents a WebSocket server. It extends the `EventEmitter`.
     WebSocket subprotocols. See description below.
   - `host` {String} The hostname where to bind the server.
   - `maxBufferedChunks` {Number} The maximum number of buffered data chunks. The
-    value is coerced to a 32-bit signed integer. Defaults to 1048576. Set to 0
-    to disable the limit.
+    value is coerced to a 32-bit signed integer. Defaults to 262144. Set to 0 to
+    disable the limit.
   - `maxFragments` {Number} The maximum number of fragments in a message. The
-    value is coerced to a 32-bit signed integer. Defaults to 131072. Set to 0 to
+    value is coerced to a 32-bit signed integer. Defaults to 16384. Set to 0 to
     disable the limit.
   - `maxPayload` {Number} The maximum allowed message size in bytes. The value
     is coerced to a 32-bit signed integer. Defaults to 104857600 (100 MiB). Set
@@ -329,10 +329,10 @@ This class represents a WebSocket. It extends the `EventEmitter`.
   - `handshakeTimeout` {Number} Timeout in milliseconds for the handshake
     request. This is reset after every redirection.
   - `maxBufferedChunks` {Number} The maximum number of buffered data chunks. The
-    value is coerced to a 32-bit signed integer. Defaults to 1048576. Set to 0
-    to disable the limit.
+    value is coerced to a 32-bit signed integer. Defaults to 262144. Set to 0 to
+    disable the limit.
   - `maxFragments` {Number} The maximum number of fragments in a message. The
-    value is coerced to a 32-bit signed integer. Defaults to 131072. Set to 0 to
+    value is coerced to a 32-bit signed integer. Defaults to 16384. Set to 0 to
     disable the limit.
   - `maxPayload` {Number} The maximum allowed message size in bytes. The value
     is coerced to a 32-bit signed integer. Defaults to 104857600 (100 MiB). Set
