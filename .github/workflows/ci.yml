@@ -66,6 +66,8 @@ jobs:
           echo "job_id=$id" >> $GITHUB_OUTPUT
         id: get_job_id
         shell: bash
+      - run: brew trust coverallsapp/coveralls
+        if: matrix.os == 'macOS-latest'
       - uses: coverallsapp/github-action@v2
         with:
           flag-name:
