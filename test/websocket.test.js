@@ -3451,6 +3451,32 @@ describe('WebSocket', () => {
       wss.on('connection', (ws) => ws.close());
     });
 
+    it('keeps `readyState` unchanged if the arguments are invalid', (done) => {
+      const wss = new WebSocket.Server({ port: 0 }, () => {
+        const ws = new WebSocket(`ws://localhost:${wss.address().port}`);
+
+        ws.on('open', () => {
+          assert.throws(
+            () => ws.close(1000, 'a'.repeat(124)),
+            /^RangeError: The message must not be greater than 123 bytes$/
+          );
+
+          //
+          // The ready state must not be changed to `CLOSING` and a subsequent
+          // valid `websocket.close()` call must still work.
+          //
+          assert.strictEqual(ws.readyState, WebSocket.OPEN);
+
+          ws.on('close', (code) => {
+            assert.strictEqual(code, 1000);
+            wss.close(done);
+          });
+
+          ws.close(1000, 'ok');
+        });
+      });
+    });
+
     it('sets a timer for the closing handshake to complete', (done) => {
       const wss = new WebSocket.Server({ port: 0 }, () => {
         const ws = new WebSocket(`ws://localhost:${wss.address().port}`);
